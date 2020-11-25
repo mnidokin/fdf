@@ -28,3 +28,10 @@ int		ft_error_open(int fd, char *str)
 	}
 	return (-1);
 }
+
+int		ft_error_invalid_char(char *line, int pos)
+{
+	if (line[pos] != ' ' && (ft_isalnum(line[pos]) != 1) && line[pos] != '-')
+		return (1);
+	return (0);
+}
