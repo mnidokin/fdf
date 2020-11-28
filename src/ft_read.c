@@ -27,23 +27,19 @@ int		ft_read(t_fdf *fdf, char *str)
 int		ft_read_width_n_length(t_fdf *fdf, char *str)
 {
 	char	*tmp_str;
-	int		max_width;
-	int		max_length;
 	int		fd;
 
-	max_length = 0;
 	fd = open(str, O_RDONLY);
+	fdf->max_y = 0;
 	while(get_next_line(fd, &tmp_str) == 1)
 	{
-		max_width = ft_read_max_width(tmp_str);
-		if (fdf->max_x != 0)
-			if (fdf->max_x != max_width)
-				exit(2);
-		fdf->max_x = max_width;
-		max_length++;
+		if (fdf->max_y == 0)
+			fdf->max_x = ft_read_max_width(tmp_str);
+		else if (fdf->max_x != ft_read_max_width(tmp_str))
+			exit(0);
+		fdf->max_y++;
 		free(tmp_str);
 	}
-	fdf->max_y = max_length;
 	close(fd);
 	return (0);
 }

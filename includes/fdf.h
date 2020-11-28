@@ -15,6 +15,18 @@
 # define COLOR_JAFFA		0xEF8633
 # define COLOR_SAFFRON		0xF3AF3D
 
+# define AR_UP				126
+# define AR_DOWN			125
+# define AR_LEFT			123
+# define AR_RIGHT			124
+
+# define KEY_ESC	53
+# define KEY_I		34
+# define KEY_0		29
+
+# define SCROLL_LEFT	6
+# define SCROLL_RIGHT	7
+
 typedef	struct	s_coords
 {
 	int	x;
@@ -127,5 +139,13 @@ int		ft_iso_proection_next_point(t_fdf *fdf, int height);
 */
 
 int		ft_offset_point(t_fdf *fdf);
+
+/*
+** ft_key_scan.c
+*/
+
+int		ft_key_scan(t_fdf *fdf, int key);
+int		ft_key_offset_axis(t_fdf *fdf, int key);
+int		ft_key_zoom(t_fdf *fdf, int key);
 
 #endif

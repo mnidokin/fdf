@@ -11,6 +11,7 @@ int	main(int ac, char **av)
 	ft_read(fdf, av[1]);
 	ft_scaling(fdf, 1000);
 	ft_draw_map(fdf);
+	mlx_key_hook(fdf->window, ft_key_scan, fdf);
 	mlx_loop(fdf->mlx_ptr);
 	return (0);
 }

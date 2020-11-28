@@ -11,7 +11,8 @@ SRC =	./src/main.c \
 		./src/ft_aux.c \
 		./src/ft_iso.c \
 		./src/ft_rotation.c \
-		./src/ft_offset.c
+		./src/ft_offset.c \
+		./src/ft_key_scan.c
 
 LIBFT = ./libft
 
@@ -26,17 +27,17 @@ INC = -I ./libft/includes/ -I ./includes/ -I ./minilibx_macos/
 all: $(NAME)
 
 lib_compile:
-	make -C $(LIBFT)
-	make -C $(MLX)
+	@ make -C $(LIBFT)
+	@ make -C $(MLX)
 
 $(NAME): lib_compile
-	gcc $(FLAGS) $(INC) -o $(NAME) $(SRC) $(LIB_MAC)
+	@ gcc $(FLAGS) $(INC) -o $(NAME) $(SRC) $(LIB_MAC)
 
 clean:
-	make -C $(LIBFT) fclean
-	make -C $(MLX) clean
+	@ make -C $(LIBFT) fclean
+	@ make -C $(MLX) clean
 
 fclean: clean
-	rm -f $(NAME)
+	@ rm -f $(NAME)
 
 re: fclean all
