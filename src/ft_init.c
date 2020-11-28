@@ -3,7 +3,7 @@
 int	ft_init(t_fdf *fdf)
 {
 	if (!(fdf->coords = (t_coords *)malloc(sizeof(t_coords))))
-		exit (2);
+		exit(2);
 	fdf->max_x = 0;
 	fdf->max_y = 0;
 	fdf->offset_x = 200;

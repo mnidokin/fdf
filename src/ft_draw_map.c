@@ -44,22 +44,3 @@ int	ft_draw_map(t_fdf *fdf)
 	}
 	return (0);
 }
-
-int	ft_coord_move_n_draw(t_fdf *fdf, int pos_x, int pos_y) //! - to remove
-{
-	fdf->coords->x = pos_x;
-	fdf->coords->y = pos_y;
-	if (pos_x < fdf->max_x - 1)
-	{
-		fdf->coords->next_x = pos_x + 1;
-		fdf->coords->next_y = pos_y;
-		ft_draw_line(fdf);
-	}
-	if (pos_y < fdf->max_y - 1)
-	{
-		fdf->coords->next_x = pos_x;
-		fdf->coords->next_y = pos_y + 1;
-		ft_draw_line(fdf);
-	}
-	return (0);
-}

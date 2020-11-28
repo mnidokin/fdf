@@ -8,6 +8,10 @@ int	main(int ac, char **av)
 	if (!(fdf = (t_fdf *)malloc(sizeof(t_fdf))))
 		exit (2);
 	ft_init(fdf);
+	fdf->max_y = 0;
+	ft_putnbr(fdf->max_y);
+	ft_putendl("");
+	ft_putendl("2");
 	ft_read(fdf, av[1]);
 	ft_scaling(fdf, 1000);
 	ft_draw_map(fdf);

@@ -99,13 +99,13 @@ int		ft_init(t_fdf *fdf);
 */
 
 int		ft_draw_map(t_fdf *fdf);
-int		ft_coord_move_n_draw(t_fdf *fdf, int pos_x, int pos_y); //! - to remove
 
 /*
 ** ft_draw_line.c
 */
 
 int		ft_draw_line(t_fdf *fdf);
+int		ft_get_high(t_fdf *fdf, int *next_height);
 
 /*
 ** ft_aux.c
@@ -144,8 +144,8 @@ int		ft_offset_point(t_fdf *fdf);
 ** ft_key_scan.c
 */
 
-int		ft_key_scan(t_fdf *fdf, int key);
-int		ft_key_offset_axis(t_fdf *fdf, int key);
-int		ft_key_zoom(t_fdf *fdf, int key);
+int		ft_key_scan(int key, t_fdf *fdf);
+void	ft_key_offset_axis(t_fdf *fdf, int key);
+void	ft_key_zoom(t_fdf *fdf, int key);
 
 #endif

@@ -44,7 +44,7 @@ int		ft_read_width_n_length(t_fdf *fdf, char *str)
 	return (0);
 }
 
-int		ft_read_max_width(char	*line)
+int		ft_read_max_width(char *line)
 {
 	int	max_width;
 	int	iter;
@@ -64,7 +64,8 @@ int		ft_read_max_width(char	*line)
 
 int		ft_read_valid_char(char *line, int pos)
 {
-	if ((line[pos] == ' ' && ft_isalnum(line[pos - 1]) == 1) || (ft_isalnum(line[pos]) == 1 && line[pos + 1] == '\0'))
+	if ((line[pos] == ' ' && ft_isalnum(line[pos - 1]) == 1) || \
+	(ft_isalnum(line[pos]) == 1 && line[pos + 1] == '\0'))
 		return (1);
 	return (0);
 }

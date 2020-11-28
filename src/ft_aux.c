@@ -8,7 +8,7 @@ int	ft_isbelowzero(int num)
 		return (num);
 }
 
-int ft_isbigger(int first, int second)
+int	ft_isbigger(int first, int second)
 {
 	if (first > second)
 		return (first);
@@ -18,7 +18,8 @@ int ft_isbigger(int first, int second)
 
 int	ft_point_check(t_fdf *fdf)
 {
-	if ((fdf->coords->x - fdf->coords->next_x) || (fdf->coords->y - fdf->coords->next_y))
+	if ((fdf->coords->x - fdf->coords->next_x) || \
+	(fdf->coords->y - fdf->coords->next_y))
 		return (0);
 	return (1);
 }

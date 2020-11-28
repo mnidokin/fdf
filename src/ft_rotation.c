@@ -12,7 +12,8 @@ int	ft_rotation_next_point(t_fdf *fdf, int *next_height)
 {
 	ft_rotation_x_axis(&(fdf->coords->next_y), next_height, fdf->alpha);
 	ft_rotation_y_axis(&(fdf->coords->next_x), next_height, fdf->beta);
-	ft_rotation_z_axis(&(fdf->coords->next_x), &(fdf->coords->next_y), fdf->gamma);
+	ft_rotation_z_axis(&(fdf->coords->next_x), \
+	&(fdf->coords->next_y), fdf->gamma);
 	return (0);
 }
 
