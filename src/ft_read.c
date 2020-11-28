@@ -6,7 +6,7 @@ void	ft_touch_map(int ac, char *file_name)
 	char	*buf[1024];
 
 	if (ac != 2)
-		ft_error_msg();
+		ft_error_mes();
 	fd = open(file_name, O_RDONLY);
 	if (ft_error_open(fd, file_name) == -1)
 		ft_error_mes();
@@ -31,8 +31,9 @@ int		ft_read_width_n_length(t_fdf *fdf, char *str)
 	int		max_length;
 	int		fd;
 
+	max_length = 0;
 	fd = open(str, O_RDONLY);
-	while(get_next_line(fd, &tmp_str))
+	while(get_next_line(fd, &tmp_str) == 1)
 	{
 		max_width = ft_read_max_width(tmp_str);
 		if (fdf->max_x != 0)
@@ -40,10 +41,10 @@ int		ft_read_width_n_length(t_fdf *fdf, char *str)
 				exit(2);
 		fdf->max_x = max_width;
 		max_length++;
-		free(tmp_str);
+		//free(tmp_str);
 	}
 	fdf->max_y = max_length;
-	free(tmp_str);
+	//free(tmp_str);
 	close(fd);
 	return (0);
 }

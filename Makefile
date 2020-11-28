@@ -1,14 +1,17 @@
 NAME = fdf
 
-SRC =	./src/main.c
-		./src/ft_error.c
-		./src/ft_read.c
-		./src/ft_scaling.c
-		./src/ft_height_map.c
-		./src/ft_init.c
-		./src/ft_draw_map.c
-		./src/ft_draw_line.c
-		./src/ft_aux.c
+SRC =	./src/main.c \
+		./src/ft_error.c \
+		./src/ft_read.c \
+		./src/ft_scaling.c \
+		./src/ft_height_map.c \
+		./src/ft_init.c \
+		./src/ft_draw_map.c \
+		./src/ft_draw_line.c \
+		./src/ft_aux.c \
+		./src/ft_iso.c \
+		./src/ft_rotation.c \
+		./src/ft_offset.c
 
 LIBFT = ./libft
 

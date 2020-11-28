@@ -8,8 +8,9 @@ int	ft_read_height(t_fdf *fdf, char *str)
 	int		iter_z;
 
 	iter_z = 0;
+	fd = 0;
 	fdf->height_map_src = (int *)malloc(sizeof(int) * (fdf->max_x * fdf->max_y));
-	fd = open(fd, O_RDONLY);
+	fd = open(str, O_RDONLY);
 	while (get_next_line(fd, &tmp_str) == 1)
 	{
 		iter_i = 0;
@@ -17,14 +18,14 @@ int	ft_read_height(t_fdf *fdf, char *str)
 		{
 			if (ft_isalnum(tmp_str[iter_i]) == 1)
 			{
-				fdf->height_map_src[iter_z] = ft_height_raw_map(str, &iter_i);
+				fdf->height_map_src[iter_z] = ft_height_raw_map(tmp_str, &iter_i);
 				iter_z++;
 			}
 			iter_i++;
 		}
-		free(tmp_str);
+		//free(tmp_str);
 	}
-	free(tmp_str);
+	//free(tmp_str);
 	close(fd);
 	return (0);
 }
@@ -42,9 +43,12 @@ int	ft_height_raw_map(char *str, int *pos)
 	iter = 0;
 	num_len = *pos;
 	while (ft_isalnum(str[num_len]))
+	{
 		num_len++;
+	}
 	if (!(num_str = (char *)malloc(sizeof(char) * num_len + 1)))
 		exit (2);
+	num_len = 0;
 	while (ft_isalnum(str[*pos]))
 	{
 		if (str[*pos - 1] == '-')
@@ -55,8 +59,9 @@ int	ft_height_raw_map(char *str, int *pos)
 	}
 	num_str[iter] = '\0';
 	res = ft_atoi(num_str);
-	if (flag)
+	if (flag == 1)
 		res *= -1;
+	(*pos) -= 1;
 	free(num_str);
 	return (res);
 }
@@ -80,7 +85,7 @@ int	ft_height_map_gen(t_fdf *fdf, char *str)
 			exit (2);
 		while (iter_max_x < fdf->max_x)
 		{
-			fdf->height_map[y][x] = fdf->height_map_src[iter_height];
+			fdf->height_map[iter_max_y][iter_max_x] = fdf->height_map_src[iter_height];
 			iter_height++;
 			iter_max_x++;
 		}

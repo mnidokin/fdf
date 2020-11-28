@@ -4,6 +4,7 @@
 #	include <errno.h>
 #	include <fcntl.h>
 #	include <stdlib.h>
+#	include <math.h>
 #	include "libft.h"
 #	include "get_next_line.h"
 #	include "mlx.h"
@@ -13,6 +14,14 @@
 # define COLOR_FLAMINGO		0xEC4B27
 # define COLOR_JAFFA		0xEF8633
 # define COLOR_SAFFRON		0xF3AF3D
+
+typedef	struct	s_coords
+{
+	int	x;
+	int	y;
+	int	next_x;
+	int	next_y;
+}				t_coords;
 
 typedef	struct	s_fdf
 {
@@ -29,17 +38,10 @@ typedef	struct	s_fdf
 	int			max_y;
 	int			scale;
 	int			cur_color;
+	int			iso_flag;
 	void		*mlx_ptr;
 	void		*window;
 }				t_fdf;
-
-typedef	struct	s_coords
-{
-	int	x;
-	int	y;
-	int	next_x;
-	int	next_y;
-}				t_coords;
 
 /*
 ** ft_read.c
@@ -99,5 +101,31 @@ int		ft_draw_line(t_fdf *fdf);
 
 int		ft_isbelowzero(int num);
 int		ft_isbigger(int first, int second);
+int		ft_point_check(t_fdf *fdf);
+int		ft_point_step(t_fdf *fdf, int x_displace, int y_displace);
+
+/*
+** ft_rotation.c
+*/
+
+int		ft_rotation_point(t_fdf *fdf);
+int		ft_rotation_next_point(t_fdf *fdf, int *next_height);
+int		ft_rotation_x_axis(int *y, int *z, double angl);
+int		ft_rotation_y_axis(int *x, int *z, double angl);
+int		ft_rotation_z_axis(int *x, int *y, double angl);
+
+/*
+** ft_iso.c
+*/
+
+int		ft_iso_check(t_fdf *fdf, int next_height);
+int		ft_iso_proection(t_fdf *fdf);
+int		ft_iso_proection_next_point(t_fdf *fdf, int height);
+
+/*
+** ft_offset.c
+*/
+
+int		ft_offset_point(t_fdf *fdf);
 
 #endif

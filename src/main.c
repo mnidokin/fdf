@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-int	main(int ac, char *av)
+int	main(int ac, char **av)
 {
 	t_fdf	*fdf;
 
@@ -10,5 +10,7 @@ int	main(int ac, char *av)
 	ft_init(fdf);
 	ft_read(fdf, av[1]);
 	ft_scaling(fdf, 1000);
+	ft_draw_map(fdf);
+	mlx_loop(fdf->mlx_ptr);
 	return (0);
 }
