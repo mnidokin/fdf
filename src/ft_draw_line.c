@@ -11,13 +11,11 @@ int	ft_draw_line(t_fdf *fdf)
 	int	y_displace;
 	int	max_step;
 
-	if (fdf->coords->x == 10)
-		ft_putendl("1");
 	x_displace = 0;
 	y_displace = 0;
 	max_step = 0;
 	fdf->cur_height = fdf->height_map[fdf->coords->y][fdf->coords->x];
-	next_height = fdf->height_map[fdf->coords->next_y][fdf->coords->next_x]; //!!!!!!!!!!!!
+	next_height = fdf->height_map[fdf->coords->next_y][fdf->coords->next_x];
 	fdf->cur_color = (fdf->cur_height || next_height) ? 0xF3AF3D : 0xEC4B27;
 	ft_coord_scale(fdf);
 	ft_rotation_point(fdf);

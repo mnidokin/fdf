@@ -87,7 +87,7 @@ int		ft_init(t_fdf *fdf);
 */
 
 int		ft_draw_map(t_fdf *fdf);
-int		ft_coord_step(t_fdf *fdf, int pos_x, int pos_y);
+int		ft_coord_move_n_draw(t_fdf *fdf, int pos_x, int pos_y); //! - to remove
 
 /*
 ** ft_draw_line.c

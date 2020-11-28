@@ -28,7 +28,6 @@ int	ft_draw_map(t_fdf *fdf)
 		iter_x = 0;
 		while (iter_x < fdf->max_x)
 		{
-			//ft_coord_step(fdf, iter_x, iter_y);
 			if (iter_x < fdf->max_x - 1)
 			{
 				ft_t_xx(iter_x, iter_y, fdf);
@@ -46,7 +45,7 @@ int	ft_draw_map(t_fdf *fdf)
 	return (0);
 }
 
-/*int	ft_coord_step(t_fdf *fdf, int pos_x, int pos_y)
+int	ft_coord_move_n_draw(t_fdf *fdf, int pos_x, int pos_y) //! - to remove
 {
 	fdf->coords->x = pos_x;
 	fdf->coords->y = pos_y;
@@ -54,11 +53,13 @@ int	ft_draw_map(t_fdf *fdf)
 	{
 		fdf->coords->next_x = pos_x + 1;
 		fdf->coords->next_y = pos_y;
+		ft_draw_line(fdf);
 	}
 	if (pos_y < fdf->max_y - 1)
 	{
 		fdf->coords->next_x = pos_x;
 		fdf->coords->next_y = pos_y + 1;
+		ft_draw_line(fdf);
 	}
 	return (0);
-}*/
+}

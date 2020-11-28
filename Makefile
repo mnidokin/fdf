@@ -21,7 +21,7 @@ LIB_MAC = -lmlx -lm -lft -L $(LIBFT) -L $(MLX) -framework OpenGL -framework APPK
 
 FLAGS = -Wall -Werror -Wextra
 
-INC = -I ./libft/includes/ -I ./includes/
+INC = -I ./libft/includes/ -I ./includes/ -I ./minilibx_macos/
 
 all: $(NAME)
 

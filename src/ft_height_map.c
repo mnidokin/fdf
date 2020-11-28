@@ -9,7 +9,8 @@ int	ft_read_height(t_fdf *fdf, char *str)
 
 	iter_z = 0;
 	fd = 0;
-	fdf->height_map_src = (int *)malloc(sizeof(int) * (fdf->max_x * fdf->max_y));
+	if (!(fdf->height_map_src = (int *)malloc(sizeof(int) * (fdf->max_x * fdf->max_y))))
+		exit(2);
 	fd = open(str, O_RDONLY);
 	while (get_next_line(fd, &tmp_str) == 1)
 	{
@@ -23,9 +24,8 @@ int	ft_read_height(t_fdf *fdf, char *str)
 			}
 			iter_i++;
 		}
-		//free(tmp_str);
+		free(tmp_str);
 	}
-	//free(tmp_str);
 	close(fd);
 	return (0);
 }
@@ -47,7 +47,7 @@ int	ft_height_raw_map(char *str, int *pos)
 		num_len++;
 	}
 	if (!(num_str = (char *)malloc(sizeof(char) * num_len + 1)))
-		exit (2);
+		exit(2);
 	num_len = 0;
 	while (ft_isalnum(str[*pos]))
 	{
@@ -77,12 +77,12 @@ int	ft_height_map_gen(t_fdf *fdf, char *str)
 	iter_max_y = 0;
 	ft_read_height(fdf, str);
 	if (!(fdf->height_map = (int **)malloc(sizeof(int *) * fdf->max_y)))
-		exit (2);
+		exit(2);
 	while (iter_max_y < fdf->max_y)
 	{
 		iter_max_x = 0;
 		if (!(fdf->height_map[iter_max_y] = (int *)malloc(sizeof(int) * fdf->max_x)))
-			exit (2);
+			exit(2);
 		while (iter_max_x < fdf->max_x)
 		{
 			fdf->height_map[iter_max_y][iter_max_x] = fdf->height_map_src[iter_height];

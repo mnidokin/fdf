@@ -41,10 +41,9 @@ int		ft_read_width_n_length(t_fdf *fdf, char *str)
 				exit(2);
 		fdf->max_x = max_width;
 		max_length++;
-		//free(tmp_str);
+		free(tmp_str);
 	}
 	fdf->max_y = max_length;
-	//free(tmp_str);
 	close(fd);
 	return (0);
 }
