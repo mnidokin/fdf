@@ -3,7 +3,7 @@
 void	ft_error_mes(void)
 {
 	ft_putendl("...the thread of prophecy is severed");
-	exit(0);
+	exit(EXIT_FAILURE);
 }
 
 int		ft_error_open(int fd, char *str)
