@@ -7,39 +7,25 @@ int	ft_read_height(t_fdf *fdf, char *str)
 	int		iter_i;
 	int		iter_z;
 
-	iter_z = 0;
+	iter_z = -1;
 	if (!(fdf->height_map_src = (int *)malloc(sizeof(int) * \
 	(fdf->max_x * fdf->max_y))))
 		exit(EXIT_FAILURE);
 	fd = open(str, O_RDONLY);
 	while (get_next_line(fd, &tmp_str) == 1)
 	{
-		iter_i = 0;
-		while (tmp_str[iter_i])
+		iter_i = -1;
+		while (tmp_str[++iter_i])
 		{
-			//ft_isnum_check(fdf, &iter_z, iter_i, tmp_str);
 			if (ft_isalnum(tmp_str[iter_i]) == 1)
 			{
-				fdf->height_map_src[iter_z] = \
+				fdf->height_map_src[++iter_z] = \
 				ft_height_raw_map(tmp_str, &iter_i);
-				iter_z++;
 			}
-			iter_i++;
 		}
 		free(tmp_str);
 	}
 	close(fd);
-	return (0);
-}
-
-int	ft_isnum_check(t_fdf *fdf, int *iter_z, int iter_i, char *tmp_str)
-{
-	if (ft_isalnum(tmp_str[iter_i]) == 1)
-	{
-		fdf->height_map_src[*iter_z] = \
-		ft_height_raw_map(tmp_str, &iter_i);
-		iter_z++;
-	}
 	return (0);
 }
 

@@ -87,7 +87,6 @@ int		ft_coord_scale(t_fdf *fdf);
 int		ft_read_height(t_fdf *fdf, char *str);
 int		ft_height_raw_map(char *str, int *pos);
 int		ft_height_map_gen(t_fdf *fdf, char *str);
-int		ft_isnum_check(t_fdf *fdf, int *iter_z, int iter_i, char *tmp_str);
 
 /*
 ** ft_init.h

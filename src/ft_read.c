@@ -31,7 +31,7 @@ int		ft_read_width_n_length(t_fdf *fdf, char *str)
 
 	fd = open(str, O_RDONLY);
 	fdf->max_y = 0;
-	while(get_next_line(fd, &tmp_str) == 1)
+	while (get_next_line(fd, &tmp_str) == 1)
 	{
 		if (fdf->max_y == 0)
 			fdf->max_x = ft_read_max_width(tmp_str);

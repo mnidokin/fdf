@@ -16,7 +16,7 @@ void	ft_t_yy(int x, int y, t_fdf *fdf_list)
 	fdf_list->coords->next_y = y + 1;
 }
 
-int	ft_draw_map(t_fdf *fdf)
+int		ft_draw_map(t_fdf *fdf)
 {
 	int	iter_x;
 	int	iter_y;
