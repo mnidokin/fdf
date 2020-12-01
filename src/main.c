@@ -6,7 +6,7 @@
 /*   By: mnidokin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 18:30:25 by mnidokin          #+#    #+#             */
-/*   Updated: 2020/12/01 18:31:49 by mnidokin         ###   ########.fr       */
+/*   Updated: 2020/12/01 20:13:38 by mnidokin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int ac, char **av)
 	ft_read(av[1], fdf);
 	fdf->mlx_ptr = mlx_init();
 	fdf->window = mlx_new_window(fdf->mlx_ptr, 1000, 1000, "FDF");
+	fdf->scale = 0;
 	ft_scale(fdf, 1000);
 	fdf->offset_x = 200;
 	fdf->offset_y = 200;

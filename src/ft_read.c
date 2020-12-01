@@ -6,7 +6,7 @@
 /*   By: mnidokin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 18:29:56 by mnidokin          #+#    #+#             */
-/*   Updated: 2020/12/01 18:32:46 by mnidokin         ###   ########.fr       */
+/*   Updated: 2020/12/01 19:52:27 by mnidokin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ int	ft_read_coords_map(char *str, t_fdf *fdf)
 		if (fdf->max_y == 0)
 			fdf->max_x = ft_read_coords_line(line);
 		else if (fdf->max_x != ft_read_coords_line(line))
-			exit(EXIT_SUCCESS);
+		{
+			ft_error_msg();
+		}
 		fdf->max_y++;
 		free(line);
 	}

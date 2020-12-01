@@ -6,7 +6,7 @@
 /*   By: mnidokin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 18:37:26 by mnidokin          #+#    #+#             */
-/*   Updated: 2020/12/01 19:00:14 by mnidokin         ###   ########.fr       */
+/*   Updated: 2020/12/01 20:33:39 by mnidokin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,20 @@
 
 # define KEY_ESC	53
 # define KEY_I		34
-# define KEY_0		29
+# define KEY_O		35
 
 # define MAIN_PAD_PLUS		24
 # define MAIN_PAD_MINUS		27
+
+# define KEY_Q	12
+# define KEY_W	13
+# define KEY_E	14
+# define KEY_A	0
+# define KEY_S	1
+# define KEY_D	2
+# define KEY_R	15
+# define KEY_Y	16
+# define KEY_T	17
 
 typedef	struct	s_coords
 {

@@ -6,7 +6,7 @@
 /*   By: mnidokin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 18:29:46 by mnidokin          #+#    #+#             */
-/*   Updated: 2020/12/01 19:44:07 by mnidokin         ###   ########.fr       */
+/*   Updated: 2020/12/01 20:35:40 by mnidokin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 int		ft_key(int key, t_fdf *fdf)
 {
-	if (key == 53)
+	if (key == KEY_ESC)
 		exit(0);
-	if (key == 34)
+	if (key == KEY_I)
 		fdf->iso_flag = 1;
-	if (key == 35)
+	if (key == KEY_O)
 		fdf->iso_flag = 0;
-	if (key == 126)
+	if (key == AR_UP)
 		fdf->offset_y -= 10;
-	if (key == 125)
+	if (key == AR_DOWN)
 		fdf->offset_y += 10;
-	if (key == 124)
+	if (key == AR_RIGHT)
 		fdf->offset_x += 10;
-	if (key == 123)
+	if (key == AR_LEFT)
 		fdf->offset_x -= 10;
-	if (key == MAIN_PAD_PLUS)
+	if (key == MAIN_PAD_MINUS)
 		fdf->scale -= 10;
 	if (key == MAIN_PAD_PLUS)
 		fdf->scale += 10;
@@ -40,23 +40,23 @@ int		ft_key(int key, t_fdf *fdf)
 
 int		ft_key_angle(int key, t_fdf *fdf)
 {
-	if (key == 12)
+	if (key == KEY_Q)
 		fdf->alpha += 100 * 0.002;
-	if (key == 13)
+	if (key == KEY_W)
 		fdf->beta += 100 * 0.002;
-	if (key == 14)
+	if (key == KEY_E)
 		fdf->gamma += 100 * 0.002;
-	if (key == 0)
+	if (key == KEY_A)
 		fdf->alpha -= 100 * 0.002;
-	if (key == 1)
+	if (key == KEY_S)
 		fdf->beta -= 100 * 0.002;
-	if (key == 2)
+	if (key == KEY_D)
 		fdf->gamma -= 100 * 0.002;
-	if (key == 15)
+	if (key == KEY_R)
 		fdf->alpha = 0;
-	if (key == 17)
+	if (key == KEY_T)
 		fdf->beta = 0;
-	if (key == 16)
+	if (key == KEY_Y)
 		fdf->gamma = 0;
 	return (0);
 }
