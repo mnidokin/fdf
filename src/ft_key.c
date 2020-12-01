@@ -6,7 +6,7 @@
 /*   By: mnidokin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 18:29:46 by mnidokin          #+#    #+#             */
-/*   Updated: 2020/12/01 18:32:14 by mnidokin         ###   ########.fr       */
+/*   Updated: 2020/12/01 19:44:07 by mnidokin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int		ft_key(int key, t_fdf *fdf)
 		fdf->offset_x += 10;
 	if (key == 123)
 		fdf->offset_x -= 10;
-	if (key == 6)
-		fdf->scale -= 1;
-	if (key == 7)
-		fdf->scale += 1;
+	if (key == MAIN_PAD_PLUS)
+		fdf->scale -= 10;
+	if (key == MAIN_PAD_PLUS)
+		fdf->scale += 10;
 	ft_key_angle(key, fdf);
 	mlx_clear_window(fdf->mlx_ptr, fdf->window);
 	ft_draw(fdf);

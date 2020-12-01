@@ -6,7 +6,7 @@
 /*   By: mnidokin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 18:29:01 by mnidokin          #+#    #+#             */
-/*   Updated: 2020/12/01 18:35:31 by mnidokin         ###   ########.fr       */
+/*   Updated: 2020/12/01 19:39:20 by mnidokin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_draw_map(t_fdf *fdf)
 	float	z1;
 
 	ft_height_get(fdf, &z1);
-	fdf->cur_color = (fdf->cur_height || z1) ? 0xe80c0c : 0xffffff;
+	fdf->cur_color = (fdf->cur_height || z1) ? COLOR_BRICK_RED : COLOR_SAFFRON;
 	ft_scale_coords(fdf);
 	ft_rotation_map(fdf, &z1);
 	ft_iso_check(fdf, z1);
