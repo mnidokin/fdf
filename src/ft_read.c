@@ -1,71 +1,111 @@
 #include "fdf.h"
 
-void	ft_touch_map(int ac, char *file_name)
+int	ft_read(char *str, t_fdf *fdf)
 {
-	int		fd;
-	char	*buf[1024];
-
-	if (ac != 2)
-		ft_error_mes();
-	fd = open(file_name, O_RDONLY);
-	if (ft_error_open(fd, file_name) == -1)
-		ft_error_mes();
-	if (read(fd, buf, 1) <= 0)
-		ft_error_mes();
-	while (read(fd, buf, 1))
-		continue ;
-	close(fd);
-}
-
-int		ft_read(t_fdf *fdf, char *str)
-{
-	ft_read_width_n_length(fdf, str);
-	ft_height_map_gen(fdf, str);
+	ft_read_coords_map(str, fdf);
+	if (!(fdf->height_map_src = (int *)malloc(sizeof(int) * (fdf->max_x * fdf->max_y))))
+		exit(EXIT_FAILURE);
+	ft_read_height(str, fdf);
+	ft_height_map(fdf);
 	return (0);
 }
 
-int		ft_read_width_n_length(t_fdf *fdf, char *str)
+int	ft_read_coords_map(char *str, t_fdf *fdf)
 {
-	char	*tmp_str;
+	char	*line;
 	int		fd;
 
 	fd = open(str, O_RDONLY);
 	fdf->max_y = 0;
-	while (get_next_line(fd, &tmp_str) == 1)
+	while (get_next_line(fd, &line) == 1)
 	{
 		if (fdf->max_y == 0)
-			fdf->max_x = ft_read_max_width(tmp_str);
-		else if (fdf->max_x != ft_read_max_width(tmp_str))
-			exit(EXIT_FAILURE);
+			fdf->max_x = ft_read_coords_line(line);
+		else if (fdf->max_x != ft_read_coords_line(line))
+			exit(EXIT_SUCCESS);
 		fdf->max_y++;
-		free(tmp_str);
+		free(line);
 	}
 	close(fd);
 	return (0);
 }
 
-int		ft_read_max_width(char *line)
+int	ft_read_coords_line(char *str)
 {
-	int	max_width;
-	int	iter;
+	int	i;
+	int	x;
 
-	max_width = 0;
-	iter = 0;
-	while (line[iter])
+	i = 0;
+	x = 0;
+	while (str[i] != '\0')
 	{
-		if (ft_error_invalid_char(line, iter))
-			ft_error_mes();
-		if (ft_read_valid_char(line, iter))
-			max_width++;
-		iter++;
+		if (str[i] != ' ' && (ft_isalnum(str[i]) != 1) && str[i] != '-')
+			ft_error_msg();
+		if ((str[i] == ' ' && 1 == ft_isalnum(str[i - 1])) || \
+		(ft_isalnum(str[i]) == 1 && str[i + 1] == '\0'))
+		{
+			x++;
+			i++;
+		}
+		else
+			i++;
 	}
-	return (max_width);
+	return (x);
 }
 
-int		ft_read_valid_char(char *line, int pos)
+int	ft_read_height(char *str, t_fdf *fdf)
 {
-	if ((line[pos] == ' ' && ft_isalnum(line[pos - 1]) == 1) || \
-	(ft_isalnum(line[pos]) == 1 && line[pos + 1] == '\0'))
-		return (1);
+	char	*l;
+	int		fd;
+	int		i;
+	int		j;
+
+	fd = open(str, O_RDONLY);
+	j = 0;
+	while (get_next_line(fd, &l) == 1)
+	{
+		i = 0;
+		while (l[i])
+		{
+			if (ft_isalnum(l[i]) == 1)
+			{
+				fdf->height_map_src[j] = ft_read_height_line(l, &i);
+				j++;
+			}
+			i++;
+		}
+		free(l);
+	}
+	close(fd);
 	return (0);
+}
+
+int	ft_read_height_line(char *str, int *i)
+{
+	char	*n;
+	int		a;
+	int		f;
+
+	a = *i;
+	f = 1;
+	while (ft_isalnum(str[a]))
+	{
+		a++;
+	}
+	n = malloc(sizeof(char) * a + 1);
+	a = 0;
+	while (ft_isalnum(str[*i]))
+	{
+		if (str[*i - 1] == '-')
+			f = -1;
+		n[a] = str[*i];
+		a++;
+		*i += 1;
+	}
+	n[a] = '\0';
+	a = ft_atoi(n);
+	a *= f;
+	*i -= 1;
+	free(n);
+	return (a);
 }

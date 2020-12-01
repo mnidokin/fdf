@@ -1,37 +1,51 @@
 #include "fdf.h"
 
-void	ft_error_mes(void)
+int		ft_error_touch_map(int ac, char *str)
 {
-	ft_putendl("...the thread of prophecy is severed");
-	exit(EXIT_FAILURE);
+	char	buf[1];
+	int		i;
+	int		fd;
+
+	if (ac != 2)
+		ft_error_msg();
+	fd = open(str, O_RDONLY);
+	ft_error_check_map(fd, str);
+	if (read(fd, buf, 1) <= 0)
+		ft_error_msg();
+	while (read(fd, buf, 1))
+	{
+		i = 1;
+	}
+	close(fd);
+	return (0);
 }
 
-int		ft_error_open(int fd, char *str)
+int		ft_error_check_map(int fd, char *str)
 {
-	char	*exten;
-	int		index;
+	int		i;
+	char	*s;
 
-	exten = ".fdf";
-	index = 0;
 	if (fd < 0)
-		return (-1);
-	while (str[index] != '\0')
+		ft_error_msg();
+	s = ".fdf";
+	i = 0;
+	while (str[i] != '\0')
 	{
-		if (str[index] == '.')
+		if (str[i] == '.')
 		{
-			if (ft_strequ(str + index, exten) == 0)
-				return (-1);
+			if (ft_strequ(str + i, s) == 0)
+				ft_error_msg();
 			else
 				return (0);
 		}
-		index++;
+		i++;
 	}
-	return (-1);
+	ft_error_msg();
+	return (0);
 }
 
-int		ft_error_invalid_char(char *line, int pos)
+void	ft_error_msg(void)
 {
-	if (line[pos] != ' ' && (ft_isalnum(line[pos]) != 1) && line[pos] != '-')
-		return (1);
-	return (0);
+	ft_putendl("...the thread of prophecy is severed");
+	exit(EXIT_FAILURE);
 }

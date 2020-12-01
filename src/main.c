@@ -4,15 +4,21 @@ int	main(int ac, char **av)
 {
 	t_fdf	*fdf;
 
-	ft_touch_map(ac, av[1]);
-	if (!(fdf = (t_fdf *)malloc(sizeof(t_fdf))))
+	ft_error_touch_map(ac, av[1]);
+	if (!(fdf = malloc(sizeof(t_fdf) * 1)))
 		exit(EXIT_FAILURE);
-	ft_init(fdf);
-	fdf->max_y = 0;
-	ft_read(fdf, av[1]);
-	ft_scaling(fdf, 1000);
-	ft_draw_map(fdf);
-	mlx_key_hook(fdf->window, ft_key_scan, fdf);
+	ft_read(av[1], fdf);
+	fdf->mlx_ptr = mlx_init();
+	fdf->window = mlx_new_window(fdf->mlx_ptr, 1000, 1000, "FDF");
+	ft_scale(fdf, 1000);
+	fdf->offset_x = 200;
+	fdf->offset_y = 200;
+	if (!(fdf->coords = malloc(sizeof(t_coords) * 1)))
+		exit(EXIT_FAILURE);
+	fdf->alpha = 0;
+	fdf->beta = 0;
+	fdf->gamma = 0;
+	ft_draw(fdf);
+	mlx_key_hook(fdf->window, ft_key, fdf);
 	mlx_loop(fdf->mlx_ptr);
-	return (0);
 }

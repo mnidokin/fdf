@@ -29,10 +29,10 @@
 
 typedef	struct	s_coords
 {
-	int	x;
-	int	y;
-	int	next_x;
-	int	next_y;
+	float	x;
+	float	y;
+	float	next_x;
+	float	next_y;
 }				t_coords;
 
 typedef	struct	s_fdf
@@ -43,7 +43,7 @@ typedef	struct	s_fdf
 	t_coords	*coords;
 	int			*height_map_src;
 	int			**height_map;
-	int			cur_height;
+	float		cur_height;
 	int			offset_x;
 	int			offset_y;
 	int			max_x;
@@ -56,96 +56,89 @@ typedef	struct	s_fdf
 }				t_fdf;
 
 /*
-** ft_read.c
-*/
-
-void	ft_touch_map(int ac, char *file_name);
-int		ft_read(t_fdf *fdf, char *str);
-int		ft_read_width_n_length(t_fdf *fdf, char *str);
-int		ft_read_max_width(char	*line);
-int		ft_read_valid_char(char *line, int pos);
-
-/*
 ** ft_error.c
 */
 
-void	ft_error_mes(void);
-int		ft_error_open(int fd, char *str);
-int		ft_error_invalid_char(char *line, int pos);
-
-/*
-** ft_scaling.c
-*/
-
-int		ft_scaling(t_fdf *fdf, int size);
-int		ft_coord_scale(t_fdf *fdf);
+int		ft_error_touch_map(int ac, char *str);
+int		ft_error_check_map(int fd, char *str);
+void	ft_error_msg(void);
 
 /*
 ** ft_height_map.c
 */
 
-int		ft_read_height(t_fdf *fdf, char *str);
-int		ft_height_raw_map(char *str, int *pos);
-int		ft_height_map_gen(t_fdf *fdf, char *str);
+int	ft_height_map(t_fdf *fdf);
 
 /*
-** ft_init.h
+** ft_key.c
 */
 
-int		ft_init(t_fdf *fdf);
+int		ft_key(int key, t_fdf *fdf);
+int		ft_key_angle(int key, t_fdf *fdf);
+
+/*
+** ft_read.c
+*/
+
+int		ft_read(char *str, t_fdf *fdf);
+int		ft_read_coords_map(char *str, t_fdf *fdf);
+int		ft_read_coords_line(char *str);
+int		ft_read_height(char *str, t_fdf *fdf);
+int		ft_read_height_line(char *str, int *i);
+
+/*
+** ft_scale.c
+*/
+
+int		ft_scale(t_fdf *fdf, int size);
+int		ft_scale_coords(t_fdf *fdf);
+
+/*
+** ft_draw.c
+*/
+
+int	ft_draw(t_fdf *fdf);
+int	ft_draw_x_step(t_fdf *fdf, int x, int y);
+int	ft_draw_y_step(t_fdf *fdf, int x, int y);
 
 /*
 ** ft_draw_map.c
 */
 
-int		ft_draw_map(t_fdf *fdf);
-
-/*
-** ft_draw_line.c
-*/
-
-int		ft_draw_line(t_fdf *fdf);
-int		ft_get_high(t_fdf *fdf, int *next_height);
-
-/*
-** ft_aux.c
-*/
-
-int		ft_isbelowzero(int num);
-int		ft_isbigger(int first, int second);
-int		ft_point_check(t_fdf *fdf);
-int		ft_point_step(t_fdf *fdf, int x_displace, int y_displace);
+int	ft_draw_map(t_fdf *fdf);
 
 /*
 ** ft_rotation.c
 */
 
-int		ft_rotation_point(t_fdf *fdf);
-int		ft_rotation_next_point(t_fdf *fdf, int *next_height);
-int		ft_rotation_x_axis(int *y, int *z, double angl);
-int		ft_rotation_y_axis(int *x, int *z, double angl);
-int		ft_rotation_z_axis(int *x, int *y, double angl);
+int	ft_rotation_map(t_fdf *fdf, float *next_height);
+int	ft_rotation_x_axis(double angl, float *z, float *y);
+int	ft_rotation_y_axis(double angl, float *z, float *x);
+int	ft_rotation_z_axis(double angl, float *x, float *y);
 
 /*
 ** ft_iso.c
 */
 
-int		ft_iso_check(t_fdf *fdf, int next_height);
-int		ft_iso_proection(t_fdf *fdf);
-int		ft_iso_proection_next_point(t_fdf *fdf, int height);
+int	ft_iso_check(t_fdf *fdf, float next_height);
+int	ft_iso_calc(float height, float *x, float *y);
 
 /*
 ** ft_offset.c
 */
 
-int		ft_offset_point(t_fdf *fdf);
+int	ft_offset(t_fdf *fdf);
 
 /*
-** ft_key_scan.c
+** ft_isbigger.c
 */
 
-int		ft_key_scan(int key, t_fdf *fdf);
-void	ft_key_offset_axis(t_fdf *fdf, int key);
-void	ft_key_zoom(t_fdf *fdf, int key);
+float	ft_isbigger(float x, float y);
+
+/*
+** ft_abs.c
+*/
+
+float ft_abs(float num);
 
 #endif

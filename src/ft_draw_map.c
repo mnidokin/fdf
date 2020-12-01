@@ -1,46 +1,29 @@
 #include "fdf.h"
 
-void	ft_t_xx(int x, int y, t_fdf *fdf_list)
+int	ft_draw_map(t_fdf *fdf)
 {
-	fdf_list->coords->x = x;
-	fdf_list->coords->y = y;
-	fdf_list->coords->next_x = x + 1;
-	fdf_list->coords->next_y = y;
-}
+	float	x_step;
+	float	y_step;
+	float	max;
+	float	z1;
 
-void	ft_t_yy(int x, int y, t_fdf *fdf_list)
-{
-	fdf_list->coords->x = x;
-	fdf_list->coords->y = y;
-	fdf_list->coords->next_x = x;
-	fdf_list->coords->next_y = y + 1;
-}
-
-int		ft_draw_map(t_fdf *fdf)
-{
-	int	iter_x;
-	int	iter_y;
-
-	iter_x = 0;
-	iter_y = 0;
-	while (iter_y < fdf->max_y)
+	fdf->cur_height = fdf->height_map[(int)fdf->coords->y][(int)fdf->coords->x];
+	z1 = fdf->height_map[(int)fdf->coords->next_y][(int)fdf->coords->next_x];
+	fdf->cur_color = (fdf->cur_height || z1) ? 0xe80c0c : 0xffffff;
+	ft_scale_coords(fdf);
+	ft_rotation_map(fdf, &z1);
+	ft_iso_check(fdf, z1);
+	ft_offset(fdf);
+	x_step = fdf->coords->next_x - fdf->coords->x;
+	y_step = fdf->coords->next_y - fdf->coords->y;
+	max = ft_isbigger(ft_abs(x_step), ft_abs(y_step));
+	x_step /= max;
+	y_step /= max;
+	while ((int)(fdf->coords->x - fdf->coords->next_x) || (int)(fdf->coords->y - fdf->coords->next_y))
 	{
-		iter_x = 0;
-		while (iter_x < fdf->max_x)
-		{
-			if (iter_x < fdf->max_x - 1)
-			{
-				ft_t_xx(iter_x, iter_y, fdf);
-				ft_draw_line(fdf);
-			}
-			if (iter_y < fdf->max_y - 1)
-			{
-				ft_t_yy(iter_x, iter_y, fdf);
-				ft_draw_line(fdf);
-			}
-			iter_x++;
-		}
-		iter_y++;
+		mlx_pixel_put(fdf->mlx_ptr, fdf->window, (int)fdf->coords->x, (int)fdf->coords->y, fdf->cur_color);
+		fdf->coords->x += x_step;
+		fdf->coords->y += y_step;
 	}
 	return (0);
 }
