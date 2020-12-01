@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_read.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mnidokin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/01 18:29:56 by mnidokin          #+#    #+#             */
+/*   Updated: 2020/12/01 18:32:46 by mnidokin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 int	ft_read(char *str, t_fdf *fdf)
 {
 	ft_read_coords_map(str, fdf);
-	if (!(fdf->height_map_src = (int *)malloc(sizeof(int) * (fdf->max_x * fdf->max_y))))
+	if (!(fdf->height_map_src = \
+	(int *)malloc(sizeof(int) * (fdf->max_x * fdf->max_y))))
 		exit(EXIT_FAILURE);
 	ft_read_height(str, fdf);
 	ft_height_map(fdf);
@@ -89,9 +102,7 @@ int	ft_read_height_line(char *str, int *i)
 	a = *i;
 	f = 1;
 	while (ft_isalnum(str[a]))
-	{
 		a++;
-	}
 	n = malloc(sizeof(char) * a + 1);
 	a = 0;
 	while (ft_isalnum(str[*i]))

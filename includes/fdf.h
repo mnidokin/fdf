@@ -68,6 +68,7 @@ void	ft_error_msg(void);
 */
 
 int	ft_height_map(t_fdf *fdf);
+int	ft_height_get(t_fdf *fdf, float *next_height);
 
 /*
 ** ft_key.c

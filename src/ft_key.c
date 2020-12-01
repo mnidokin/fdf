@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_key.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mnidokin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/01 18:29:46 by mnidokin          #+#    #+#             */
+/*   Updated: 2020/12/01 18:32:14 by mnidokin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 int		ft_key(int key, t_fdf *fdf)
@@ -26,7 +38,7 @@ int		ft_key(int key, t_fdf *fdf)
 	return (0);
 }
 
-int	ft_key_angle(int key, t_fdf *fdf)
+int		ft_key_angle(int key, t_fdf *fdf)
 {
 	if (key == 12)
 		fdf->alpha += 100 * 0.002;
